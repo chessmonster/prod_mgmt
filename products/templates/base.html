@@ -1,0 +1,73 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'products:list' %}">{% trans "Product Management" %}</a>
+                </div>
+        
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="{% url 'products:list' %}">{% trans "Home" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'products:create' %}">{% trans "Create" %}</a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            Choose language
+                            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}" >
+                                <select name="language" onchange="this.form.submit()">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                            {{ language.name_local }} ({{ language.code }})
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="content">
+                    {% block content %}
+                    {% endblock %}
+                    </div>    
+                </div>
+            </div>
+            
+        </nav>
+
+
+
+        
+
+
+    </body>
+</html>  
+

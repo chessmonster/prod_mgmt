@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans "Detail" %}</h1>
+    <p>{{ object.name }}</p>
+
+    <table class="table table-bordered table-hover">
+    	<tbody>
+    		<tr>
+    			<th>{% trans "Product Name" %}</th><td>{{object.product_name}}</td>
+    		</tr>
+    		<tr>
+    			<th>{% trans "Display Name" %}</th><td>{{object.display_name}}</td>
+    		</tr>
+    		<tr>
+    			<th>{% trans "SKU" %}</th><td>{{object.sku}}</td>
+    		</tr>
+    	</tbody>
+    </table>
+
+    <a href="{% url 'products:list' %}">{% trans "Back to List" %}</a>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans "Delete" %}</h1>
+    <p>{% trans "Are you sure you want to delete?" %}</p>
+
+    <form id="product_form" method="post" action=".">
+	    {% csrf_token %}
+	    <input type="submit" value="{% trans "Yes" %}" class="btn btn-primary" /> 
+	    <a href="{% url 'products:list' %}" class="btn btn-danger">{% trans "No" %}</a>
+    </form>
+{% endblock %}
+
