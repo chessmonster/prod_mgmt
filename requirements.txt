@@ -4,7 +4,7 @@ binaryornot==0.4.4
 certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
-cookiecutter==1.6.0
+cookiecutter==2.1.1
 Django==2.2.2
 django-bootstrap3==11.0.0
 django-modeltranslation==0.13.1
